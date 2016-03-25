@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="659.0" layoutY="38.0" text="تاریخ" />
+      <TableView layoutX="14.0" layoutY="14.0" prefHeight="562.0" prefWidth="376.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="جنس" />
+          <TableColumn prefWidth="75.0" text="تعداد" />
+            <TableColumn prefWidth="75.0" text="قیمت واحد" />
+            <TableColumn prefWidth="75.0" text="تخفیف" />
+            <TableColumn prefWidth="75.0" text="قیمت کل" />
+        </columns>
+      </TableView>
+      <DatePicker layoutX="445.0" layoutY="34.0" />
+   </children>
+</AnchorPane>

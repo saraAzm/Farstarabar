@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farstarabar.DriverDefineController">
+   <children>
+      <TextField fx:id="firstNameField" layoutX="140.0" layoutY="93.0" />
+      <DatePicker fx:id="birthdayDatePicker" layoutX="140.0" layoutY="290.0" />
+      <Label layoutX="358.0" layoutY="97.0" text="اسم" />
+      <TextField fx:id="lastNameField" layoutX="140.0" layoutY="142.0" />
+      <Label layoutX="358.0" layoutY="146.0" text="فامیل" />
+      <TextField fx:id="cityField" layoutX="140.0" layoutY="184.0" />
+      <Label layoutX="365.0" layoutY="188.0" text="شهر" />
+      <TextField fx:id="phoneNumber" layoutX="140.0" layoutY="235.0" />
+      <Label layoutX="365.0" layoutY="239.0" text="شماره موبایل" />
+      <Label layoutX="373.0" layoutY="294.0" text="تاریخ تولد" />
+      <TextField fx:id="nationalCodeField" layoutX="146.0" layoutY="339.0" />
+      <Label layoutX="364.0" layoutY="343.0" text="شماره ملی" />
+      <TextField fx:id="insuranceCodeField" layoutX="146.0" layoutY="378.0" />
+      <Label layoutX="370.0" layoutY="382.0" text="کد بیمه" />
+      <TextField fx:id="descriptionField" layoutX="146.0" layoutY="428.0" />
+      <Label layoutX="370.0" layoutY="432.0" text="توضیحات" />
+      <Button layoutX="448.0" layoutY="483.0" mnemonicParsing="false" onAction="#newPerson" text="تایید" />
+   </children>
+</AnchorPane>

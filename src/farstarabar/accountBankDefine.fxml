@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farstarabar.accountBankDefine">
+   <children>
+      <TextField fx:id="bankName" layoutX="169.0" layoutY="107.0" />
+      <Label layoutX="356.0" layoutY="111.0" text="بانک" />
+      <DatePicker fx:id="initDatePicker" layoutX="169.0" layoutY="291.0" />
+      <TextField fx:id="type" layoutX="169.0" layoutY="148.0" />
+      <Label layoutX="356.0" layoutY="152.0" text="نوع حساب" />
+      <TextField fx:id="accountNumber" layoutX="169.0" layoutY="190.0" />
+      <Label layoutX="356.0" layoutY="194.0" text="شماره حساب" />
+      <TextField fx:id="cartNumber" layoutX="169.0" layoutY="233.0" />
+      <Label layoutX="360.0" layoutY="237.0" text="شماره کارت" />
+      <Label layoutX="360.0" layoutY="295.0" text="تاریخ افتتاح" />
+      <TextField fx:id="initValue" layoutX="169.0" layoutY="335.0" />
+      <Label layoutX="361.0" layoutY="339.0" text="موجودی اولیه" />
+      <Button layoutX="219.0" layoutY="422.0" mnemonicParsing="false" onAction="#defineNewAccount" text="ایجاد حساب" />
+   </children>
+</AnchorPane>

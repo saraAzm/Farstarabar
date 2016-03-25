@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farstarabar.CarDefineController">
+   <children>
+      <TextField fx:id="carNumber" layoutX="246.0" layoutY="137.0" />
+      <TextField fx:id="serialNumber" layoutX="246.0" layoutY="195.0" />
+      <Label layoutX="478.0" layoutY="141.0" text="شماره پلاک" />
+      <Label layoutX="478.0" layoutY="199.0" text="شماره سریال" />
+      <Label layoutX="478.0" layoutY="251.0" text="اسم راننده" />
+      <TextField fx:id="ensuranceNumber" layoutX="246.0" layoutY="299.0" />
+      <Label layoutX="481.0" layoutY="303.0" text="شماره بیمه" />
+      <Label layoutX="476.0" layoutY="351.0" text="تاریخ انقضا" />
+      <DatePicker fx:id="expireDate" layoutX="234.0" layoutY="347.0" />
+      <DatePicker fx:id="initDate" layoutX="234.0" layoutY="391.0" />
+      <Label layoutX="476.0" layoutY="408.0" text="تاریخ صدور" />
+      <TextField fx:id="ITINumber" layoutX="579.0" layoutY="137.0" />
+      <Label layoutX="763.0" layoutY="142.0" text="شماره ITI" />
+      <DatePicker fx:id="ITIExpire" layoutX="579.0" layoutY="197.0" />
+      <Label layoutX="787.0" layoutY="201.0" text="تاریخ انقضای ITI" />
+      <TextField fx:id="measureNumber" layoutX="585.0" layoutY="239.0" />
+      <Label layoutX="787.0" layoutY="243.0" text="شماره کارت اندازه گیری" />
+      <ComboBox fx:id="driver" layoutX="246.0" layoutY="247.0" prefWidth="150.0" />
+      <Button layoutX="356.0" layoutY="476.0" mnemonicParsing="false" onAction="#defineNewCar" text="تایید" />
+   </children>
+</AnchorPane>

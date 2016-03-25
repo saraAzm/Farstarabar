@@ -1,3 +1,5 @@
+package model;
+
 import java.util.Date;
 
 
@@ -16,6 +18,8 @@ public class Car {
 	Car(String pn, String ps){
 		pelakNumber = pn;
 		pelakSeries = ps;
+                
+                Database.database.addCar(this);
 	}
 
 	public String getPelakNumber() {

@@ -5,9 +5,11 @@
  */
 package farstarabar;
 
+import java.time.LocalDate;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import model.Person;
 
 /**
  *
@@ -34,5 +36,15 @@ public class DriverDefineController {
     @FXML
     public void newPerson(){
         // this is going to introduce a new person!
+        Person p = new Person(this.firstNameField.getText(), this.lastNameField.getText(),
+                this.nationalCodeField.getText(), this.phoneNumber.getText(),
+                this.birthdayDatePicker.getValue(),
+                this.descriptionField.getText());
+        
+    }
+    
+    public void initialize(){
+        this.birthdayDatePicker.setValue(LocalDate.now());
+        
     }
 }

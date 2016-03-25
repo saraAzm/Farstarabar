@@ -7,7 +7,6 @@ package farstarabar;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
@@ -16,6 +15,8 @@ import javafx.scene.control.TextField;
  * @author Aardwolf
  */
 public class CarDefineController {
+    
+    
     @FXML
     private TextField ensuranceNumber;
     
@@ -48,6 +49,6 @@ public class CarDefineController {
     
     @FXML
     public void defineNewCar(){
-    
+        
     }
 }

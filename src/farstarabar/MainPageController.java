@@ -5,16 +5,25 @@
  */
 package farstarabar;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Person;
 
 /**
  *
@@ -32,7 +41,50 @@ public class MainPageController {
     @FXML
     public MenuItem defineAccount;
     
+    @FXML
+    public TableView<Person> personTable;
+    @FXML
+    public TableColumn<Person, String> firstNameColPersonTable;
+    @FXML
+    public TableColumn<Person, String> lastNameColPersonTable;
+    @FXML
+    public TextField personFirstNameField;
+    @FXML
+    public TextField personLastNameField;
+    @FXML
+    public TextField personNationCodeField;
+    @FXML
+    public TextField personPhoneNumberField;
+    @FXML
+    public TextField personDescriptionField;
+    @FXML
+    public DatePicker personBirthdayDatePicker;
+    @FXML
+    public Button personAccountStat;
+    @FXML
+    public Label personIDLabel;
     
+    
+    
+    public void updatePersonList(){
+        personTable.setItems(Database.database.getObservalblePerson());
+    }
+    
+    public void updatePersonAnchor(Person p){
+        this.personFirstNameField.setText(p.getFirstName());
+        this.personLastNameField.setText(p.getLastName());
+        this.personNationCodeField.setText(p.getNationCode());
+        this.personPhoneNumberField.setText(p.getPhoneNumber());
+        this.personDescriptionField.setText(p.getDesc());
+        this.personBirthdayDatePicker.setValue(p.getBirthday());
+        
+    }
+    
+    public void updatePerson(){
+        
+        updatePersonList();
+        
+    }
     
     public void setMainApp(Farstarabar main){
         this.mainApp = main;
@@ -40,6 +92,17 @@ public class MainPageController {
     
     @FXML
     public void initialize(){
+        firstNameColPersonTable.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
+        lastNameColPersonTable.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
+        
+        personTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Person>() {
+            
+            @Override
+            public void changed(ObservableValue<? extends Person> observable, Person oldValue, Person newValue) {
+                updatePersonAnchor(newValue); //To change body of generated methods, choose Tools | Templates.
+            }
+  });
+        
         
         this.defineBarname.setAccelerator(new KeyCodeCombination(KeyCode.B, 
                 KeyCombination.ALT_DOWN));

@@ -1,3 +1,5 @@
+package model;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,7 +10,10 @@
  *
  * @author Aardwolf
  */
-public class Good {
-    private String name;
+public class Transaction {
+    private BankAccount from;
+    private BankAccount to;
+    private int price;
+    private int ID;
     
 }

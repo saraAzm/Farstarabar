@@ -1,6 +1,7 @@
 package model;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /*
@@ -14,15 +15,15 @@ import java.util.Date;
  * @author Aardwolf
  */
 public class BankAccount {
-    private String bank;
-    private String type;
-    private String accountNumber;
+    public String bank;
+    public String type;
+    public String accountNumber;
     private String cartNumber;
-    private Date accountInitiation;
+    private LocalDate accountInitiation;
     private int value;
     private int ID;
 
-    public BankAccount(String bk, String tp, String accNum, String cartNum, Date accInit, int val) {
+    public BankAccount(String bk, String tp, String accNum, String cartNum, LocalDate accInit, int val) {
         this.bank = bk;
         this.type = tp;
         this.accountNumber = accNum;
@@ -48,7 +49,7 @@ public class BankAccount {
         return cartNumber;
     }
 
-    public Date getAccountInitiation() {
+    public LocalDate getAccountInitiation() {
         return accountInitiation;
     }
 
@@ -76,7 +77,7 @@ public class BankAccount {
         this.cartNumber = cartNumber;
     }
 
-    public void setAccountInitiation(Date accountInitiation) {
+    public void setAccountInitiation(LocalDate accountInitiation) {
         this.accountInitiation = accountInitiation;
     }
 

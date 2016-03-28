@@ -6,12 +6,16 @@
 package farstarabar;
 
 import java.io.IOException; 
+import java.time.LocalDate;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Barname;
+import model.Car;
+import model.Person;
 
 /**
  *
@@ -26,6 +30,23 @@ public class Farstarabar extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        
+        
+        Person p = new Person("hamid", "Shayesteh", "3543", "9875",
+                            LocalDate.now(), "nothing");
+        
+        Person p1 = new Person("saeed", "Shayesteh", "3543", "9875",
+                            LocalDate.now(), "nothing");
+        
+        Car c = new Car("123", "d3", "23423", LocalDate.now(), LocalDate.now(),
+                            "sdf", LocalDate.MAX, "sdlkf", p1, "sdlf");
+        
+        Car c1 = new Car("1sd23", "dd3", "23sdf423", LocalDate.now(),
+                            LocalDate.now(), "sfdsdf", LocalDate.MAX, "ssdfdlkf", p, "sdlf");
+        
+        Barname b1 = new Barname(LocalDate.now(), c1, p1, "Shiraz", "tehran", 
+                            0.4, 0.5, 0.3, 0);
+        
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Farstarabar!");
         
@@ -53,6 +74,7 @@ public class Farstarabar extends Application {
             rootlayout.setCenter(loginPage);
             LoginPageController controller = loader.getController();
             controller.setMainApp(this);
+            controller.getin();
         }catch(IOException e){
             e.printStackTrace();
         }

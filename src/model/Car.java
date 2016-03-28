@@ -1,23 +1,34 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
 public class Car {
-	private String pelakNumber;
-	private String pelakSeries;
+	private String pelakNumber = new String();
+	private String pelakSeries = new String();
 	private String ensuranceCode;
-	private Date startDate;
-	private Date finishDate;
+	private LocalDate startDate;
+	private LocalDate finishDate;
 	private String ITINumber;
-	private Date ITIfinish;
+	private LocalDate ITIfinish;
 	private String measuranceCode;
 	private Person Driver;
 	private String desc;
-	
-	Car(String pn, String ps){
-		pelakNumber = pn;
-		pelakSeries = ps;
+        
+
+	public Car(String pn, String ps, String ensrCode, LocalDate ensStDate, LocalDate ensEndDate,
+                String itiNm, LocalDate itiFnm, String measureCode, Person dr, String ds){
+		this.pelakNumber = pn;
+		this.pelakSeries = ps;
+                this.ensuranceCode = ensrCode;
+                this.startDate = ensStDate;
+                this.finishDate = ensEndDate;
+                this.ITINumber = itiNm;
+                this.ITIfinish = itiFnm;
+                this.measuranceCode = measureCode;
+                this.Driver = dr;
+                this.desc = ds;
                 
                 Database.database.addCar(this);
 	}
@@ -46,19 +57,19 @@ public class Car {
 		this.ensuranceCode = ensuranceCode;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getFinishDate() {
+	public LocalDate getFinishDate() {
 		return finishDate;
 	}
 
-	public void setFinishDate(Date finishDate) {
+	public void setFinishDate(LocalDate finishDate) {
 		this.finishDate = finishDate;
 	}
 
@@ -70,11 +81,11 @@ public class Car {
 		ITINumber = iTINumber;
 	}
 
-	public Date getITIfinish() {
+	public LocalDate getITIfinish() {
 		return ITIfinish;
 	}
 
-	public void setITIfinish(Date iTIfinish) {
+	public void setITIfinish(LocalDate iTIfinish) {
 		ITIfinish = iTIfinish;
 	}
 
@@ -95,7 +106,19 @@ public class Car {
 	}
 	
 	
-	
+        public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+
+    @Override
+    public String toString(){
+        return this.pelakNumber.concat(" ").concat(this.pelakSeries);
+    }
 	
 	
 }

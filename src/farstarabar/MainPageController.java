@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -23,6 +24,9 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.BankAccount;
+import model.Barname;
+import model.Car;
 import model.Person;
 
 /**
@@ -65,9 +69,120 @@ public class MainPageController {
     public Label personIDLabel;
     
     
+    @FXML
+    public TextField pelakField;
+    @FXML
+    public TextField pelakSeriesField;
+    @FXML
+    public TextField insuranceCodeField;
+    @FXML
+    public TextField itiCodeField;
+    @FXML
+    public TextField measureCodeField;
+    @FXML
+    public DatePicker insuranceStartDatePicker;
+    @FXML
+    public DatePicker insuranceFinishDatePicker;
+    @FXML
+    public DatePicker itiCodeDatePicker;
+    @FXML
+    public Label IDLabel;
+    @FXML
+    public ComboBox<Person> driversComboBox;
+    @FXML
+    public TableView<Car> carsTableView;
+    @FXML
+    public TableColumn<Car, String> carPelakCol;
+    @FXML
+    public TableColumn<Car, String> carPelakSeriesCol;
+    @FXML
+    public TableColumn<Car, String> carDriverNameCol;
+    
+    
+    
+    @FXML
+    public TableView<Barname> barnameTable;
+    @FXML
+    public TableColumn<Barname, String> barnameNumberCol;
+    @FXML
+    public TableColumn<Barname, String> barnameCarCol;
+    @FXML
+    public TableColumn<Barname, String> barnameOwnerCol;
+    @FXML
+    public TableColumn<Barname, String> barnameDateCol;
+    @FXML
+    public ComboBox<Car> barnameCarFilterComboBox;
+    @FXML
+    public ComboBox<Person> barnameOwnerFilterComboBox;
+    @FXML
+    public DatePicker barnameFromFilterComboBox;
+    @FXML
+    public DatePicker barnameToFilterComboBox;
+    @FXML
+    public DatePicker barnameInitiateDatePicker;
+    @FXML
+    public ComboBox<Car> barnameCarCombo;
+    @FXML
+    public ComboBox<Person> barnamePersonsCombo;
+    @FXML
+    public TextField barnameDestTextField;
+    @FXML
+    public TextField barnameSourceTextField;
+    @FXML
+    public TextField barnameBijakTextField;
+    @FXML
+    public TextField barnameDistanceTextField;
+    @FXML
+    public TextField barnameWSrcTextField;
+    @FXML
+    public TextField barnameWDestTextField;
+    @FXML
+    public TextField barnamePrice;
+    
+    @FXML
+    public TableView<BankAccount> bankTable;
+    @FXML
+    public TableColumn<BankAccount, String> bankNumberCol;
+    @FXML
+    public TableColumn<BankAccount, String> bankBankCol;
+    @FXML
+    public TableColumn<BankAccount, String> bankTypeCol;
+    @FXML
+    public TableColumn<BankAccount, String> bankOwnerCol;
+    @FXML
+    public TextField bankBankField;
+    @FXML
+    public TextField bankTypeField;
+    @FXML
+    public TextField bankNumberField;
+    @FXML
+    public TextField bankCartNumberField;
+    @FXML
+    public DatePicker bankInitDatePicker;
+    @FXML
+    public TextField bankValue;
+    
+    public void updateCarList(){
+        carsTableView.setItems(Database.database.getObservableCars());
+    }
+    
+    public void updateCarAnchor(Car c){
+        this.pelakField.setText(c.getPelakNumber());
+        this.pelakSeriesField.setText(c.getPelakSeries());
+        this.insuranceCodeField.setText(c.getEnsuranceCode());
+        this.insuranceStartDatePicker.setValue(c.getStartDate());
+        this.insuranceFinishDatePicker.setValue(c.getFinishDate());
+        this.itiCodeField.setText(c.getITINumber());
+        this.itiCodeDatePicker.setValue(c.getITIfinish());
+        this.measureCodeField.setText(c.getMeasuranceCode());
+        this.driversComboBox.setValue(c.getDriver());
+        this.driversComboBox.setItems(Database.database.getObservalblePersons());
+        this.driversComboBox.setValue(c.getDriver());
+        
+    }
     
     public void updatePersonList(){
-        personTable.setItems(Database.database.getObservalblePerson());
+        personTable.setItems(Database.database.getObservalblePersons());
     }
     
     public void updatePersonAnchor(Person p){
@@ -81,17 +196,94 @@ public class MainPageController {
     }
     
     public void updatePerson(){
-        
         updatePersonList();
+    }
+    
+    
+    public void updateBarnameAnchor(Barname bar){
+        this.barnameInitiateDatePicker.setValue(bar.getInitiateDate());
+        this.barnameCarCombo.setValue(bar.getCarInc());
+        this.barnamePersonsCombo.setValue(bar.getOwner());
+        this.barnameDestTextField.setText(bar.getDestination());
+        this.barnameSourceTextField.setText(bar.getSource());
+        this.barnameBijakTextField.setText(bar.getBijak());
         
+        this.barnameDistanceTextField.setText(new Double(bar.getDistance()).toString());
+        this.barnameWSrcTextField.setText(new Double(bar.getWeightSource()).toString());
+        this.barnameWDestTextField.setText(new Double(bar.getWeightDest()).toString());   
+    }
+    
+    public void updateBarnameList(){
+        this.barnameTable.setItems(Database.database.getObservableAllBarname());
     }
     
     public void setMainApp(Farstarabar main){
         this.mainApp = main;
     }
     
+    public void updateBankAccountList(){
+        this.bankTable.setItems(Database.database.getObservalbleAccounts());
+    }
+    
+    public void updateBankAccountAnchor(BankAccount ba){
+        this.bankBankField.setText(ba.getBank());
+        this.bankTypeField.setText(ba.getType());
+        this.bankNumberField.setText(ba.getAccountNumber());
+        this.bankCartNumberField.setText(ba.getCartNumber());
+        this.bankInitDatePicker.setValue(ba.getAccountInitiation());
+        this.bankValue.setText(Integer.valueOf(ba.getValue()).toString());
+        
+    }
+    
     @FXML
     public void initialize(){
+        
+        bankNumberCol.setCellValueFactory(new PropertyValueFactory<BankAccount, String>("accountNumber"));
+        bankBankCol.setCellValueFactory(new PropertyValueFactory<BankAccount, String>("bank"));
+        //bankOwnerCol.setCellValueFactory(new PropertyValueFactory<BankAccount, String>(""));
+        bankTypeCol.setCellValueFactory(new PropertyValueFactory<BankAccount, String>("type"));
+        bankTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<BankAccount>(){
+            @Override
+            public void changed(ObservableValue<? extends BankAccount> observable, 
+                    BankAccount oldValue, BankAccount newValue){
+                    updateBankAccountAnchor(newValue);
+            }
+            
+        
+        });
+        
+        
+        
+        barnameCarCol.setCellValueFactory(new PropertyValueFactory<Barname, String>("pelakNumber"));
+        barnameOwnerCol.setCellValueFactory(new PropertyValueFactory<Barname, String>("ownerName"));
+        barnameNumberCol.setCellValueFactory(new PropertyValueFactory<Barname, String>("bijakNumber"));
+        barnameDateCol.setCellValueFactory(new PropertyValueFactory<Barname, String>("initiateDateString"));
+        barnameTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Barname>() {
+            @Override
+            public void changed(ObservableValue<? extends Barname> observable, 
+                    Barname oldValue, Barname newValue){
+                    updateBarnameAnchor(newValue);
+                    
+                }
+        
+        });
+        
+        
+        carPelakCol.setCellValueFactory(new PropertyValueFactory<Car, String>("pelakNumber"));
+        carPelakSeriesCol.setCellValueFactory(new PropertyValueFactory<Car, String>("pelakSeries"));
+        carDriverNameCol.setCellValueFactory(new PropertyValueFactory<Car, String>("driverName"));
+        
+        carsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Car>() {
+            @Override
+            public void changed(ObservableValue<? extends Car> observable, Car oldValue, Car newValue){
+                updateCarAnchor(newValue);
+            }
+        });
+        
+        
+        
+        
+        
         firstNameColPersonTable.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
         lastNameColPersonTable.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
         
@@ -109,7 +301,10 @@ public class MainPageController {
         
         this.defineCar.setAccelerator(new KeyCodeCombination(KeyCode.C, 
                 KeyCombination.CONTROL_DOWN, KeyCombination.ALT_DOWN));
+        
+        
     }
+    
     
     @FXML
     public void defineCar(){

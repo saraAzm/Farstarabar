@@ -63,5 +63,11 @@ public class Person {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+        
+        
+        @Override
+        public String toString(){
+            return this.firstName.concat(" ").concat(this.lastName);
+        }
 	
 }

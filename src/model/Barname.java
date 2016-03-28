@@ -1,23 +1,52 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
 public class Barname {
-	private Date initiateDate;
+	private LocalDate initiateDate;
+        public String initiateDateString;
 	private Car carInc;
 	private Person owner;
 	private String destination;
 	private String source;
-	private String bijak;
+	public String bijak;
+        public String ownerName;
+        public String pelakNumber;
 	private double distance;
 	private double weightSource;
 	private double weightDest;
 	private int price;
-	public Date getInitiateDate() {
+        private String ID;
+        
+        
+        public Barname(LocalDate initDate, Car car, Person own, String dst, 
+                String src, double dist, double wSrc, double wDest, int pr){
+            this.initiateDate = initDate;
+            this.carInc = car;
+            this.owner = own;
+            this.destination = dst;
+            this.source = src;
+            this.distance = dist;
+            this.weightSource = wSrc;
+            this.weightDest = wDest;
+            this.price = pr;
+            this.initiateDateString = initDate.toString();
+            
+            this.ownerName = this.owner.getFirstName().concat(" ").concat(
+                                this.owner.getLastName());
+            
+            this.pelakNumber = this.carInc.getPelakNumber().concat(" ").concat(
+                                   this.carInc.getPelakSeries());
+            
+            Database.database.addBarname(this);
+        }
+        
+	public LocalDate getInitiateDate() {
 		return initiateDate;
 	}
-	public void setInitiateDate(Date initiateDate) {
+	public void setInitiateDate(LocalDate initiateDate) {
 		this.initiateDate = initiateDate;
 	}
 	public Car getCarInc() {
@@ -25,12 +54,16 @@ public class Barname {
 	}
 	public void setCarInc(Car carInc) {
 		this.carInc = carInc;
+                this.pelakNumber = this.carInc.getPelakNumber().concat(" ").concat(
+                                   this.carInc.getPelakSeries());
 	}
 	public Person getOwner() {
 		return owner;
 	}
 	public void setOwner(Person owner) {
 		this.owner = owner;
+                this.ownerName = this.owner.getFirstName().concat(" ").concat(
+                                this.owner.getLastName());
 	}
 	public String getDestination() {
 		return destination;

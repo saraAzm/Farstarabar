@@ -35,6 +35,12 @@ public class LoginPageController {
         
     }
     
+    public void getin(){
+        this.username.setText("s");
+        this.password.setText("s");
+        this.loginAction();
+    }
+    
     public void setMainApp(Farstarabar mainApp){
         this.mainApp = mainApp;
     }
@@ -52,5 +58,6 @@ public class LoginPageController {
         }
     
     }
+    
     
 }

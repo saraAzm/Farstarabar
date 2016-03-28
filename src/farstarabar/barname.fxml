@@ -4,8 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farstarabar.barnameController">
    <children>
       <GridPane layoutY="14.0" prefHeight="297.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -25,28 +24,28 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField GridPane.rowIndex="4" />
-            <TextField GridPane.rowIndex="3" />
+            <TextField fx:id="sourceBox" GridPane.rowIndex="4" />
+            <TextField fx:id="destBox" GridPane.rowIndex="3" />
             <Label text="ماشین" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="تاریخ صدور" GridPane.columnIndex="1" />
             <Label text="صاحب بار" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="مبدا" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="مقصد" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox prefWidth="150.0" GridPane.rowIndex="1" />
-            <DatePicker />
+            <ComboBox fx:id="carBox" prefWidth="150.0" GridPane.rowIndex="1" />
+            <DatePicker fx:id="initDateBox" />
             <Label text="شماره بیجک" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.rowIndex="5" />
+            <TextField fx:id="bijakBox" GridPane.rowIndex="5" />
             <Label text="مسافت" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label text="وزن مبدا" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Label text="وزن مقصد" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField GridPane.rowIndex="6" />
-            <TextField GridPane.rowIndex="7" />
-            <TextField GridPane.rowIndex="8" />
-            <ComboBox prefWidth="150.0" GridPane.rowIndex="2" />
+            <TextField fx:id="distanceBox" GridPane.rowIndex="6" />
+            <TextField fx:id="sourceWeightBox" GridPane.rowIndex="7" />
+            <TextField fx:id="destWeightBox" GridPane.rowIndex="8" />
+            <ComboBox fx:id="ownerBox" prefWidth="150.0" GridPane.rowIndex="2" />
             <Label text="مبلغ" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <TextField GridPane.rowIndex="9" />
+            <TextField fx:id="priceBox" GridPane.rowIndex="9" />
          </children>
       </GridPane>
-      <Button layoutX="219.0" layoutY="345.0" mnemonicParsing="false" text="ثبت بارنامه و ایجاد برنامه جدید" />
+      <Button fx:id="createButton" layoutX="219.0" layoutY="345.0" mnemonicParsing="false" onAction="#createBarname" text="ثبت بارنامه و ایجاد بارنامه جدید" />
    </children>
 </AnchorPane>

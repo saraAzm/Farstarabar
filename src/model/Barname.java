@@ -5,29 +5,53 @@ import java.util.Date;
 
 
 public class Barname {
-	private LocalDate initiateDate;
+        private LocalDate initiateDate;
         public String initiateDateString;
-	private Car carInc;
-	private Person owner;
-	private String destination;
-	private String source;
-	public String bijak;
+        private Car carInc;
+        private Person owner;
+        private String destination;
+        private String source;
+        public String bijak;
         public String ownerName;
         public String pelakNumber;
-	private double distance;
-	private double weightSource;
-	private double weightDest;
-	private int price;
-        private String ID;
+        private double distance;
+        private double weightSource;
+        private double weightDest;
+        private int price;
+        private int ID;
         
         
-        public Barname(LocalDate initDate, Car car, Person own, String dst, 
+        public Barname(LocalDate initDate, Car car, Person own, String dst, String bj,
                 String src, double dist, double wSrc, double wDest, int pr){
             this.initiateDate = initDate;
             this.carInc = car;
             this.owner = own;
             this.destination = dst;
             this.source = src;
+            this.distance = dist;
+            this.weightSource = wSrc;
+            this.weightDest = wDest;
+            this.bijak = bj;
+            this.price = pr;
+            this.initiateDateString = initDate.toString();
+            
+            this.ownerName = this.owner.getFirstName().concat(" ").concat(
+                                this.owner.getLastName());
+            
+            this.pelakNumber = this.carInc.getPelakNumber().concat(" ").concat(
+                                   this.carInc.getPelakSeries());
+            
+            Database.database.addBarname(this);
+        }
+        
+        public Barname(LocalDate initDate, Car car, Person own, String dst, String bj,
+                String src, double dist, double wSrc, double wDest, int pr, boolean flag){
+            this.initiateDate = initDate;
+            this.carInc = car;
+            this.owner = own;
+            this.destination = dst;
+            this.source = src;
+            this.bijak = bj;
             this.distance = dist;
             this.weightSource = wSrc;
             this.weightDest = wDest;
@@ -40,8 +64,43 @@ public class Barname {
             this.pelakNumber = this.carInc.getPelakNumber().concat(" ").concat(
                                    this.carInc.getPelakSeries());
             
-            Database.database.addBarname(this);
+            if(flag)
+                Database.database.addBarname(this);
         }
+        
+        public String getInitiateDateString() {
+            return initiateDateString;
+        }
+
+        public String getOwnerName() {
+            return ownerName;
+        }
+
+        public String getPelakNumber() {
+            return pelakNumber;
+        }
+
+        public int getID() {
+            return ID;
+        }
+
+        public void setInitiateDateString(String initiateDateString) {
+            this.initiateDateString = initiateDateString;
+        }
+
+        public void setOwnerName(String ownerName) {
+            this.ownerName = ownerName;
+        }
+
+        public void setPelakNumber(String pelakNumber) {
+            this.pelakNumber = pelakNumber;
+        }
+
+        public void setID(int ID) {
+            this.ID = ID;
+        }
+
+        
         
 	public LocalDate getInitiateDate() {
 		return initiateDate;

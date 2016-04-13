@@ -30,9 +30,31 @@ public class BankAccount {
         this.cartNumber = cartNum;
         this.accountInitiation = accInit;
         this.value = val;
-        Database.database.addAccount(this);
+        this.ID = Database.database.addAccount(this);
     }
-
+    
+    public BankAccount(String bk, String tp, String accNum, String cartNum, 
+            LocalDate accInit, int val, boolean flag) {
+        this.bank = bk;
+        this.type = tp;
+        this.accountNumber = accNum;
+        this.cartNumber = cartNum;
+        this.accountInitiation = accInit;
+        this.value = val;
+        if(flag)
+            this.ID = Database.database.addAccount(this);
+    }
+    
+    public String toString(){
+        return this.bank.concat(" ").concat(this.accountNumber);
+    }
+    
+    public void doTrans(BankAccount to, int cost){
+        
+        this.value = this.value - cost;
+        to.value = to.value + cost;
+    }
+    
     public String getBank() {
         return bank;
     }
@@ -89,7 +111,9 @@ public class BankAccount {
         this.ID = ID;
     }
     
-    
+    public void addValue(double dd){
+        this.value += dd;
+    }
     
     
 }

@@ -15,8 +15,9 @@ public class Car {
 	private String measuranceCode;
 	private Person Driver;
 	private String desc;
-        
+        private int ID;
 
+    
 	public Car(String pn, String ps, String ensrCode, LocalDate ensStDate, LocalDate ensEndDate,
                 String itiNm, LocalDate itiFnm, String measureCode, Person dr, String ds){
 		this.pelakNumber = pn;
@@ -29,10 +30,36 @@ public class Car {
                 this.measuranceCode = measureCode;
                 this.Driver = dr;
                 this.desc = ds;
+                this.ID = Database.database.addCar(this);
                 
-                Database.database.addCar(this);
 	}
+        
+        public Car(String pn, String ps, String ensrCode, LocalDate ensStDate, LocalDate ensEndDate,
+                String itiNm, LocalDate itiFnm, String measureCode, Person dr, String ds, boolean flag){
+		this.pelakNumber = pn;
+		this.pelakSeries = ps;
+                this.ensuranceCode = ensrCode;
+                this.startDate = ensStDate;
+                this.finishDate = ensEndDate;
+                this.ITINumber = itiNm;
+                this.ITIfinish = itiFnm;
+                this.measuranceCode = measureCode;
+                this.Driver = dr;
+                this.desc = ds;
+                if(flag)
+                    this.ID = Database.database.addCar(this);
+                
+	}
+        
+        public int getID() {
+            return ID;
+        }
 
+        public void setID(int ID) {
+            this.ID = ID;
+        }
+
+        
 	public String getPelakNumber() {
 		return pelakNumber;
 	}

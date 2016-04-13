@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.BankAccount;
 import model.Barname;
 import model.Car;
 import model.Person;
@@ -31,21 +32,29 @@ public class Farstarabar extends Application {
     @Override
     public void start(Stage primaryStage) {
         
+        Database.database.initiate();
+//        Person p = new Person("hamid", "Shayesteh", "3543", "9875",
+//                            LocalDate.now(), "nothing");
+//
+//        Person p1 = new Person("saeed", "Shayesteh", "3543", "9875",
+//                            LocalDate.now(), "nothing");
+//        
+//        Car c = new Car("123", "d3", "23423", LocalDate.now(), LocalDate.now(),
+//                            "sdf", LocalDate.now(), "sdlkf", p1, "sdlf");
+//        
+//        Car c1 = new Car("1sd23", "dd3", "23sdf423", LocalDate.now(),
+//                            LocalDate.now(), "sfdsdf", LocalDate.now(), "ssdfdlkf", p, "sdlf");
+//        
+//        Barname b1 = new Barname(LocalDate.now(), c1, p1, "Shiraz", "tehran", 
+//                            0.4, 0.5, 0.3, 0);
         
-        Person p = new Person("hamid", "Shayesteh", "3543", "9875",
-                            LocalDate.now(), "nothing");
-        
-        Person p1 = new Person("saeed", "Shayesteh", "3543", "9875",
-                            LocalDate.now(), "nothing");
-        
-        Car c = new Car("123", "d3", "23423", LocalDate.now(), LocalDate.now(),
-                            "sdf", LocalDate.MAX, "sdlkf", p1, "sdlf");
-        
-        Car c1 = new Car("1sd23", "dd3", "23sdf423", LocalDate.now(),
-                            LocalDate.now(), "sfdsdf", LocalDate.MAX, "ssdfdlkf", p, "sdlf");
-        
-        Barname b1 = new Barname(LocalDate.now(), c1, p1, "Shiraz", "tehran", 
-                            0.4, 0.5, 0.3, 0);
+//        BankAccount a1 = new BankAccount("melli", "sd", "3124123", "23423423", LocalDate.now(), 0);
+//        BankAccount a2 = new BankAccount("mellat", "sd", "3124123", "23423423", LocalDate.now(), 0);
+//        BankAccount a3 = new BankAccount("sepah", "sd", "3124123", "23423423", LocalDate.now(), 0);
+//        BankAccount a4 = new BankAccount("رفاه", "فلان مدل!", "3124123", "23423423", LocalDate.now(), 0);
+//        BankAccount a5 = new BankAccount("khar", "sd", "3124123", "23423423", LocalDate.now(), 0);
+//        
+//        Database.database.getAccounts();
         
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Farstarabar!");

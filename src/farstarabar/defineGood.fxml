@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="farstarabar.defineGoodController">
+   <children>
+      <TextField fx:id="nameField" layoutX="65.0" layoutY="51.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="65.0" />
+      <TextField fx:id="ds2Field" layoutX="65.0" layoutY="111.0" prefHeight="25.0" prefWidth="200.0" />
+      <TextArea fx:id="desc1Field" layoutX="65.0" layoutY="156.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="357.0" layoutY="55.0" text="نام" />
+      <Label layoutX="357.0" layoutY="115.0" text="توضیح کوتاه" />
+      <Label layoutX="357.0" layoutY="172.0" text="توضیح " />
+      <Button layoutX="481.0" layoutY="344.0" mnemonicParsing="false" onAction="#defineNewGood" text="Save" />
+   </children>
+</AnchorPane>

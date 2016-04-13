@@ -53,7 +53,8 @@ public class barnameController {
     public void createBarname(){
         Barname bar = new Barname(this.initDateBox.getValue(), 
                 this.carBox.getValue(), this.ownerBox.getValue(),
-                this.destBox.getText(), this.sourceBox.getText(), 
+                this.destBox.getText(), this.bijakBox.getText(),
+                this.sourceBox.getText(), 
                 Double.valueOf(this.distanceBox.getText()), 
                 Double.valueOf(this.sourceWeightBox.getText()), 
                 Double.valueOf(this.destWeightBox.getText()),

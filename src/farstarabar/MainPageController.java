@@ -44,6 +44,11 @@ public class MainPageController {
     public MenuItem defineBarname;
     @FXML
     public MenuItem defineAccount;
+    @FXML
+    public MenuItem defineTransaction;
+    @FXML
+    public MenuItem defineNewGood;
+    
     
     @FXML
     public TableView<Person> personTable;
@@ -178,6 +183,8 @@ public class MainPageController {
         this.driversComboBox.setValue(c.getDriver());
         this.driversComboBox.setItems(Database.database.getObservalblePersons());
         this.driversComboBox.setValue(c.getDriver());
+        this.IDLabel.setText(String.valueOf(c.getID()));
+        
         
     }
     
@@ -305,6 +312,47 @@ public class MainPageController {
         
     }
     
+    
+    
+        @FXML
+    public void defineNewGood(){
+        try{
+//            root = FXMLLoader.load(getClass().getClassLoader().getResource("path/to/other/view.fxml"), resources);
+//            Stage stage = new Stage();
+//            stage.setTitle("My New Stage Title");
+//            stage.setScene(new Scene(root, 450, 450));
+//            stage.show();
+            Stage newStage = new Stage();
+            newStage.setTitle("تعریف کالای جدید");
+            FXMLLoader loader = new FXMLLoader(Farstarabar.class.getResource("defineGood.fxml"));
+            AnchorPane goodDefinition = (AnchorPane)loader.load();
+            Scene scene = new Scene(goodDefinition);
+            newStage.setScene(scene);
+            newStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    public void defineNewTransacion(){
+        try{
+//            root = FXMLLoader.load(getClass().getClassLoader().getResource("path/to/other/view.fxml"), resources);
+//            Stage stage = new Stage();
+//            stage.setTitle("My New Stage Title");
+//            stage.setScene(new Scene(root, 450, 450));
+//            stage.show();
+            Stage newStage = new Stage();
+            newStage.setTitle("سند حساب داری");
+            FXMLLoader loader = new FXMLLoader(Farstarabar.class.getResource("transaction.fxml"));
+            AnchorPane transactionDefinition = (AnchorPane)loader.load();
+            Scene scene = new Scene(transactionDefinition);
+            newStage.setScene(scene);
+            newStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     
     @FXML
     public void defineCar(){

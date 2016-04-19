@@ -458,11 +458,13 @@ public class database {
             prep.setDate(2, java.sql.Date.valueOf(tr.getDateTrans()));
             prep.setString(3, tr.getType());
             prep.setString(4, tr.getDescription());
+            
             try{
                 prep.executeQuery();
             }catch(Exception e){
                 e.printStackTrace();
             }
+            
             String reqPrep = "SELECT \"ID\" FROM \"public\".\"Transaction\" WHERE "
                     + "\"FactorNumber\" = ?";
             PreparedStatement req = conn.prepareStatement(reqPrep);
@@ -538,10 +540,11 @@ public class database {
     public static Transaction getTrans(int id){
         
         try{
-            String url = "SELECT * FROM \"public\".\"Transaction\" WHERE ID = ?";
+            String url = "SELECT * FROM \"public\".\"Transaction\" WHERE \"ID\" = ?";
             PreparedStatement prep = conn.prepareStatement(url);
             prep.setInt(1, id);
             ResultSet x = prep.executeQuery();
+            x.next();
             String ftn = x.getString("FactorNumber");
             Date dd = x.getDate("DateTrans");
             String ttype = x.getString("Ttype");
@@ -551,33 +554,52 @@ public class database {
             ArrayList<PairPriceBank> fromBank = new ArrayList<>();
             ArrayList<PairPriceBank> toBank = new ArrayList<>();
             
-            String FromUrl = "SELECT * FROM \"public\".\"FromTrans\" WHERE Transaction = ?";
+            String FromUrl = "SELECT * FROM \"public\".\"FromTrans\" WHERE \"Transaction\" = ?";
             PreparedStatement FromPrep = conn.prepareStatement(FromUrl);
             FromPrep.setInt(1, id);
             ResultSet rsFrom = FromPrep.executeQuery();
             while(rsFrom.next()){
-                
+                int pr = rsFrom.getInt("Price");
+                int bankId = rsFrom.getInt("BankAccount");
+                int PrId = rsFrom.getInt("ID");
+                PairPriceBank prx = new PairPriceBank(pr, database.getAccount(bankId));
+                prx.setID(PrId);
+                fromBank.add(prx);
             }
             
             
             
-            String ToUrl = "SELECT * FROM \"public\".\"ToTrans\" WHERE Transaction = ?";
+            String ToUrl = "SELECT * FROM \"public\".\"ToTrans\" WHERE \"Transaction\" = ?";
             PreparedStatement ToPrep = conn.prepareStatement(ToUrl);
             ToPrep.setInt(1, id);
+            ResultSet rsTo = ToPrep.executeQuery();
+            while(rsTo.next()){
+                int pr = rsTo.getInt("Price");
+                int bankId = rsTo.getInt("BankAccount");
+                int PrId = rsTo.getInt("ID");
+                PairPriceBank prx = new PairPriceBank(pr, database.getAccount(bankId));
+                prx.setID(PrId);
+                toBank.add(prx);
+            }
             
-        
+            Transaction res = new Transaction(toBank, fromBank, ttype, id,
+                    dd.toLocalDate(), Description, ftn, false);
+            return res;
+            
         }catch(Exception e){
-        
+            e.printStackTrace();
         }
+        return null;
     }
     
     public static ArrayList<Transaction> getTransactions() {
         ArrayList<Transaction> resTrans = new ArrayList<>();
         try{
-            String url = "SELECT ID FROM \"public\".\"Transaction\"";
+            String url = "SELECT * FROM \"public\".\"Transaction\"";
             PreparedStatement prep = conn.prepareStatement(url);
             ResultSet rs = prep.executeQuery();
             while(rs.next()){
+                
                 int x = rs.getInt("ID");
                 resTrans.add(database.getTrans(x));
             }
@@ -587,7 +609,7 @@ public class database {
         }
         
         
-        return transactions;
+        return null;
     }
     
     public static ObservableList<Transaction> getObservableTransactions(){

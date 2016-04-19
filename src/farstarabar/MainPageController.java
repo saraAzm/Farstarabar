@@ -5,8 +5,10 @@
  */
 package farstarabar;
 
+import java.time.LocalDate;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -27,7 +30,9 @@ import javafx.stage.Stage;
 import model.BankAccount;
 import model.Barname;
 import model.Car;
+import model.PairPriceBank;
 import model.Person;
+import model.Transaction;
 
 /**
  *
@@ -167,6 +172,60 @@ public class MainPageController {
     @FXML
     public TextField bankValue;
     
+    
+    @FXML
+    public TableView<Transaction> transList;
+    @FXML
+    public TableColumn<Transaction, LocalDate> transColDate;
+    @FXML
+    public TableColumn<Transaction, String> transColFacNum;
+    
+    @FXML
+    public TableView<PairPriceBank> transFromList;
+    @FXML 
+    public TableColumn<PairPriceBank, BankAccount> transColFromBank;
+    @FXML
+    public TableColumn<PairPriceBank, String> transColFromPrice;
+    
+    @FXML
+    public TableView<PairPriceBank> transToList;
+    @FXML 
+    public TableColumn<PairPriceBank, BankAccount> transColToBank;
+    @FXML
+    public TableColumn<PairPriceBank, String> transColToPrice;
+    
+    @FXML
+    public Label transId;
+    @FXML
+    public ComboBox<String> transtypes;
+    @FXML
+    public DatePicker transDate;
+    @FXML
+    public TextField transFactorNumber;
+    @FXML
+    public TextArea transDesc;
+    @FXML
+    public Button transSave;
+    
+    
+    
+    public void updateTransList(){
+        transList.setItems(Database.database.getObservableTransactions());
+    }
+    
+    public void updateTransAnchor(Transaction tr){
+        
+        transFromList.setItems(FXCollections.observableArrayList(tr.getFromBank()));
+        
+        transToList.setItems(FXCollections.observableArrayList(tr.getToBank()));
+        transId.setText(String.valueOf(tr.getID()));
+        transDate.setValue(tr.getDateTrans());
+        transFactorNumber.setText(tr.getFactorNumber());
+        transDesc.setText(tr.getDescription());
+        
+    }
+    
+    
     public void updateCarList(){
         carsTableView.setItems(Database.database.getObservableCars());
     }
@@ -180,9 +239,9 @@ public class MainPageController {
         this.itiCodeField.setText(c.getITINumber());
         this.itiCodeDatePicker.setValue(c.getITIfinish());
         this.measureCodeField.setText(c.getMeasuranceCode());
-        this.driversComboBox.setValue(c.getDriver());
         this.driversComboBox.setItems(Database.database.getObservalblePersons());
         this.driversComboBox.setValue(c.getDriver());
+        System.out.println(c.getDriverName());
         this.IDLabel.setText(String.valueOf(c.getID()));
         
         
@@ -244,6 +303,23 @@ public class MainPageController {
     
     @FXML
     public void initialize(){
+        
+        transColFacNum.setCellValueFactory(new PropertyValueFactory<Transaction, String>("FactorNumber"));
+        transColDate.setCellValueFactory(new PropertyValueFactory<Transaction, LocalDate>("dateTrans"));
+        
+        transList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Transaction>(){
+            @Override
+            public void changed(ObservableValue< ? extends Transaction> observable, 
+                    Transaction oldValue, Transaction newValue){
+                updateTransAnchor(newValue);
+            }
+        });
+        
+        transColFromBank.setCellValueFactory(new PropertyValueFactory<PairPriceBank, BankAccount>("bank"));
+        transColFromPrice.setCellValueFactory(new PropertyValueFactory<PairPriceBank, String>("Sprice"));
+        
+        transColToBank.setCellValueFactory(new PropertyValueFactory<PairPriceBank, BankAccount>("bank"));
+        transColToPrice.setCellValueFactory(new PropertyValueFactory<PairPriceBank, String>("Sprice"));
         
         bankNumberCol.setCellValueFactory(new PropertyValueFactory<BankAccount, String>("accountNumber"));
         bankBankCol.setCellValueFactory(new PropertyValueFactory<BankAccount, String>("bank"));

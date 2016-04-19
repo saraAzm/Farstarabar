@@ -90,9 +90,8 @@ public class transactionController {
     @FXML
     public void doTrans(){
          Transaction tr = new Transaction(toBank, fromBank, 
-                 this.ttypeCombo.getValue(), Integer.valueOf(this.idField.getText()), 
-                 this.date.getValue(), this.desssc.getText(), this.idField.getText());
-         
+                this.ttypeCombo.getValue(), this.date.getValue(), 
+                this.desssc.getText(), this.idField.getText());
     }
     
     @FXML

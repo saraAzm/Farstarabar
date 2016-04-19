@@ -18,10 +18,30 @@ public class Transaction {
     private ArrayList<PairPriceBank> fromBank = new ArrayList();
     private ArrayList<PairPriceBank> toBank = new ArrayList(); 
     private int ID;
-    private LocalDate dateTrans;
+    private LocalDate dateTrans = LocalDate.MAX;
     private String type;
     private String description;
-    private String FactorNumber;
+    private String FactorNumber = "";
+    
+    
+    public Transaction(ArrayList<PairPriceBank> To, ArrayList<PairPriceBank> From, 
+                        String ttype, LocalDate date, String desc, String ffnumber){
+        this.fromBank = From;
+        this.toBank = To;
+        this.type = ttype;
+        this.dateTrans = date;
+        this.description = desc;
+        this.FactorNumber = ffnumber;
+        for(int i=0; i<To.size(); i++){
+            PairPriceBank x = To.get(i);
+            x.getBank().addValue(x.getPrice());
+        }
+        for(int i=0; i<From.size(); i++){
+            PairPriceBank x = From.get(i);
+            x.getBank().addValue(-1 * x.getPrice());
+        }
+        Database.database.addTransaction(this);
+    }
     
     public Transaction(ArrayList<PairPriceBank> To, ArrayList<PairPriceBank> From, 
                         String ttype, int id, LocalDate date, String desc, String ffnumber){

@@ -11,14 +11,15 @@ package model;
  */
 public class PairPriceBank {
     private int price;
-    private BankAccount bank;
+    public BankAccount bank;
     private int ID;
-    
+    public String Sprice = "b";
     
     
     public PairPriceBank(int pp, BankAccount bb){
         this.bank = bb;
         this.price = pp;
+        this.Sprice = String.valueOf(price);
     }
     
     public int getPrice() {
@@ -29,8 +30,13 @@ public class PairPriceBank {
         return bank;
     }
 
+    public String getSprice() {
+        return Sprice;
+    }
+
     public void setPrice(int price) {
         this.price = price;
+        this.Sprice = String.valueOf(this.price);
     }
 
     public void setBank(BankAccount bank) {

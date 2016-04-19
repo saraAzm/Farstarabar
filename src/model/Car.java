@@ -15,6 +15,7 @@ public class Car {
 	private String measuranceCode;
 	private Person Driver;
 	private String desc;
+        public String driverName;
         private int ID;
 
     
@@ -29,6 +30,10 @@ public class Car {
                 this.ITIfinish = itiFnm;
                 this.measuranceCode = measureCode;
                 this.Driver = dr;
+                if(this.Driver != null){
+                    this.driverName = this.Driver.getFirstName().
+                            concat(" ").concat(this.Driver.getLastName());
+                }
                 this.desc = ds;
                 this.ID = Database.database.addCar(this);
                 
@@ -46,6 +51,12 @@ public class Car {
                 this.measuranceCode = measureCode;
                 this.Driver = dr;
                 this.desc = ds;
+                this.driverName = null;
+                if(this.Driver != null){
+                    this.driverName = this.Driver.getFirstName().
+                            concat(" ").concat(this.Driver.getLastName());
+                }
+                
                 if(flag)
                     this.ID = Database.database.addCar(this);
                 
@@ -87,7 +98,9 @@ public class Car {
 	public LocalDate getStartDate() {
 		return startDate;
 	}
-
+       
+        
+        
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
@@ -117,24 +130,34 @@ public class Car {
 	}
 
 	public String getMeasuranceCode() {
-		return measuranceCode;
+            return measuranceCode;
 	}
 
 	public void setMeasuranceCode(String measuranceCode) {
-		this.measuranceCode = measuranceCode;
+            this.measuranceCode = measuranceCode;
 	}
 
 	public Person getDriver() {
-		return Driver;
+            return Driver;
 	}
 
+        public String getDriverName() {
+            return driverName;
+        }
+        
 	public void setDriver(Person driver) {
-		Driver = driver;
+                this.driverName = null;
+                this.Driver = driver;
+                if(this.Driver != null){
+                    this.driverName = this.Driver.getFirstName().
+                            concat(" ").concat(this.Driver.getLastName());
+                }
+		
 	}
 	
 	
         public String getDesc() {
-        return desc;
+            return desc;
     }
 
     public void setDesc(String desc) {
